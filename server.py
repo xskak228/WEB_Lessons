@@ -37,6 +37,7 @@ def not_found(error):
 def bad_request(_):
     return make_response(jsonify({'error': 'Bad Request'}), 400)
 
+
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
@@ -95,7 +96,7 @@ def logout():
     return redirect("/")
 
 
-@app.route('/news',  methods=['GET', 'POST'])
+@app.route('/news', methods=['GET', 'POST'])
 @login_required
 def add_news():
     form = NewsForm()
@@ -131,7 +132,7 @@ def edit_news(id):
     if form.validate_on_submit():
         db_sess = db_session.create_session()
         news = db_sess.query(News).filter(News.id == id,
-                                          News.user == current_user
+                                          not News.user != current_user
                                           ).first()
         if news:
             news.title = form.title.data
@@ -160,6 +161,7 @@ def news_delete(id):
     else:
         abort(404)
     return redirect('/')
+
 
 if __name__ == '__main__':
     main()
