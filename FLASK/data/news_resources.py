@@ -1,8 +1,8 @@
 from flask import Flask, jsonify
 from flask_restful import reqparse, abort, Api, Resource
 
-from data import db_session
-from data.news import News
+from FLASK.data import db_session
+from FLASK.data.news import News
 
 app = Flask(__name__)
 api = Api(app)

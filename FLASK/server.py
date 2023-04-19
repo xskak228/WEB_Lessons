@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, abort, jsonify
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import abort, Api
 from data import db_session, news_api, news_resources
 from data.users import User
 from data.news import News
